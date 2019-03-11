@@ -9,7 +9,8 @@ module Api
       user = User.new(user_params)
 
       if user.save
-        render_user_credentials(user)
+        issue_credential_headers(user)
+        render json: UserSerializer.new(user)
       else
         render json: { errors: user.errors }
       end

@@ -7,7 +7,7 @@ module Api
 
       if bearer_token
         decoded = ChatServer::Auth.decode(bearer_token)
-        @current_user = decoded['user']
+        @current_user = User.find(decoded['user']['id'])
       else
         render json: { error: 'Bearer token not provided' }, status: 401
       end
@@ -17,6 +17,9 @@ module Api
 
     rescue JWT::DecodeError
       render json: { error: 'Bearer token is invalid' }, status: 401
+
+    rescue ActiveRecord::RecordNotFound
+      render json: { error: 'User not found' }, status: 401
     end
 
     private
