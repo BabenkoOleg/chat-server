@@ -16,8 +16,6 @@ gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
-# A pure ruby implementation of the RFC 7519 OAuth JSON Web Token (JWT) standard
-gem 'jwt'
 # Annotate Rails classes with schema and routes info
 gem 'annotate'
 # A lightning fast JSON:API serializer for Ruby Objects

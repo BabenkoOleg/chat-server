@@ -14,7 +14,7 @@ module Api
       user = User.find_by(nickname: auth_params[:nickname])
 
       if user.present? && user.authenticate(auth_params[:password])
-        issue_credential_headers(user)
+        set_credential_headers(user.authorize!(request.headers['client']))
         render json: UserSerializer.new(user)
       else
         render json: { error: 'Invalid nickname or password' }, status: 422

@@ -5,6 +5,7 @@
 #  id              :bigint(8)        not null, primary key
 #  nickname        :string           not null
 #  password_digest :string
+#  tokens          :jsonb
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
@@ -14,6 +15,9 @@
 #
 
 class User < ApplicationRecord
+  # === concerns ===
+  include Authorizable
+
   # === authentication ===
   has_secure_password
 

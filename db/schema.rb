@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2019_03_11_121509) do
   create_table "users", force: :cascade do |t|
     t.string "nickname", null: false
     t.string "password_digest"
+    t.jsonb "tokens", default: {}
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["nickname"], name: "index_users_on_nickname", unique: true

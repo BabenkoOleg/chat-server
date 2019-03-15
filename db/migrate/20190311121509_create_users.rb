@@ -4,6 +4,8 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :nickname, null: false
       t.string :password_digest
 
+      t.jsonb :tokens, default: {}
+
       t.timestamps
     end
 
