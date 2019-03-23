@@ -39,6 +39,10 @@ group :development, :test do
   gem 'factory_bot_rails'
   # A library for generating fake data such as names, addresses, and phone numbers.
   gem 'faker'
+  # A gem providing "time travel", "time freezing", and "time acceleration" capabilities,
+  # making it simple to test time-dependent code. It provides a unified method to mock Time.now,
+  # Date.today, and DateTime.now in a single call.
+  gem 'timecop'
 end
 
 group :development do

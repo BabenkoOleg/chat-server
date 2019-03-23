@@ -42,6 +42,7 @@ end
 RSpec.configure do |config|
   config.include ApiHelper
   config.include JsonHelper
+  config.include AuthorizableHelper
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
