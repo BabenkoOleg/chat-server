@@ -15,9 +15,9 @@ module Api
 
       if user.present? && user.authenticate(auth_params[:password])
         set_credential_headers(user.authorize!(request.headers['client']))
-        render json: UserSerializer.new(user)
+        render json: UserSerializer.new(user), status: :created
       else
-        render json: { error: 'Invalid nickname or password' }, status: 422
+        render json: { error: 'Invalid nickname or password' }, status: :unprocessable_entity
       end
     end
 

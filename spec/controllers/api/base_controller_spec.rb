@@ -13,6 +13,24 @@ RSpec.describe Api::BaseController, type: :controller do
     let(:user) { create(:user) }
     let(:credentials) { user.authorize! }
 
+    context 'valid credentials' do
+      it 'access token' do
+        authorize user, credentials
+        get :index
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'last token' do
+        client = credentials['client']
+        user.authorize!(client)
+
+        authorize user, credentials
+        get :index
+
+        expect(response).to have_http_status(:success)
+      end
+    end
+
     context 'invalid credentials' do
       context 'access token' do
         it 'valid, but is not alive' do
@@ -65,24 +83,6 @@ RSpec.describe Api::BaseController, type: :controller do
 
           expect(response).to have_http_status(:unauthorized)
         end
-      end
-    end
-
-    context 'valid credentials' do
-      it 'access token' do
-        authorize user, credentials
-        get :index
-        expect(response).to have_http_status(:success)
-      end
-
-      it 'last token' do
-        client = credentials['client']
-        user.authorize!(client)
-
-        authorize user, credentials
-        get :index
-
-        expect(response).to have_http_status(:success)
       end
     end
   end

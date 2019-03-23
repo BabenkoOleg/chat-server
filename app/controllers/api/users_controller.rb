@@ -10,9 +10,9 @@ module Api
 
       if user.save
         set_credential_headers(user.authorize!)
-        render json: UserSerializer.new(user)
+        render json: UserSerializer.new(user), status: :created
       else
-        render json: { errors: user.errors }
+        render json: { errors: user.errors }, status: :unprocessable_entity
       end
     end
 
